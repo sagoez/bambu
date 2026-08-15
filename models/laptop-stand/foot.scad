@@ -1,9 +1,13 @@
 /* Twin laptop stand foot - MacBook Pro 16" M4 + ThinkPad P14s Gen 6 AMD.
    Print two.
 
-   Official thicknesses:
-       MacBook Pro 16" M4        16.8 mm, uniform slab
-       ThinkPad P14s Gen 6 AMD   16.13 mm rear, tapering to 10.9 mm front
+   Thicknesses:
+       MacBook Pro 16" M4        16.8 mm, uniform slab (Apple spec)
+       ThinkPad P14s Gen 6 AMD   26.64 mm, MEASURED
+
+   The ThinkPad number is measured, not the published one. Lenovo lists 16.13 mm
+   at the rear edge for this model; the real machine measures 26.64 and the
+   16.13 slot was far too small to take it. Measurement wins.
 
    The ThinkPad is a wedge, but the taper runs along its 223.7 mm depth and the
    slot only engages ~28 mm of that, so thickness varies by ~0.65 mm inside the
@@ -29,8 +33,12 @@ $fn = 64;
    No cases or sleeves on either laptop, so slot widths are sized bare. */
 
 laptop_foot(
-    front_t = 16.13,   // ThinkPad P14s Gen 6 AMD, hinge edge
+    front_t = 26.64,   // ThinkPad P14s Gen 6 AMD, hinge edge, MEASURED
     back_t  = 16.80,   // MacBook Pro 16" M4
+
+    /* Per-slot clearance. The ThinkPad slot is deliberately tight at 0.4 mm
+       total; the MacBook keeps the 1.3 mm default, which fits it well. */
+    front_clear = 0.4,
 
     foot_w = 78.0,
     h_tail = 24.0,

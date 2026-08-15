@@ -29,7 +29,9 @@ module laptop_foot(
     front_t,
     back_t,
 
-    slot_clear = 1.3,
+    slot_clear  = 1.3,
+    front_clear = undef,
+    back_clear  = undef,
     slot_floor = 9.0,
     slot_gap   = 15.0,
 
@@ -49,8 +51,13 @@ module laptop_foot(
     pad_d     = 2.4,
     pad_dia   = 12.0
 ) {
-    fs = front_t + slot_clear;
-    bs = back_t + slot_clear;
+    /* Per-slot clearance so one laptop can be a tight fit without dragging the
+       other tighter with it. Fall back to slot_clear when not given. */
+    fc = front_clear == undef ? slot_clear : front_clear;
+    bc = back_clear  == undef ? slot_clear : back_clear;
+
+    fs = front_t + fc;
+    bs = back_t + bc;
 
     foot_d = front_margin + fs + slot_gap + bs + back_margin;
 
