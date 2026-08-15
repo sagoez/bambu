@@ -18,7 +18,8 @@ dimensions to a reusable library module.
 | [`models/laptop-stand`](models/laptop-stand) | MacBook Pro 16" + ThinkPad P14s, on edge | 2 | 269.5 cm3 ea |
 | [`models/skadis-ruler`](models/skadis-ruler) | 50 cm ruler, on an IKEA SKADIS pegboard | 1 | 21.8 cm3 |
 
-> `skadis-ruler` is the one part that needs **support on, "build plate only"**.
+> `skadis-ruler` is the one part that needs **support**: type normal(auto),
+> style Snug, and tick **On build plate only**.
 > Its hook cantilevers off the back plate and sag would eat the 0.4 mm of
 > clearance the hook has in a 5 mm slot. Everything else prints support-free.
 

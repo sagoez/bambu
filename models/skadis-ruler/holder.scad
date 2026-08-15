@@ -5,7 +5,8 @@
 
    Single-slot hook, so board pitch does not matter - fits any SKADIS.
 
-   PRINT WITH SUPPORT ON, "support on build plate only".
+   PRINT WITH SUPPORT ON: type normal(auto), style Snug, and tick
+   "On build plate only".
 
    The hook cantilevers 7.7 mm off the back plate and 58 mm2 of it is
    unsupported. This cannot be fixed by orientation: supporting it geometrically
@@ -14,8 +15,10 @@
    - the dimension that has to pass a 5 mm slot with 0.4 mm of clearance, so sag
    can stop it fitting.
 
-   "On build plate only" is correct: below the hook is open air all the way to
-   the bed, so support grows from the plate and does not touch anything else.
+   "On build plate only" is a checkbox, not a style. It is correct here because
+   below the hook is open air all the way to the bed, so support grows from the
+   plate and touches nothing else. Snug wraps the hook footprint rather than
+   lattice-filling the area, so there is less to pick off.
    The scarred face is the hook underside, which rests on the slot's lower edge
    in use - cosmetic, not functional.
 
