@@ -1,4 +1,4 @@
-# bambu
+# 🐻 Bambu
 
 3d blueprints for my home office.
 
