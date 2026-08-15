@@ -1,8 +1,9 @@
-/* Lindy 43202 KVM dock - under-desk end cup. Print ONE of this, plus ONE of
-   cup-mirrored.scad. They are NOT identical.
+/* Lindy 43202 KVM dock - under-desk end cup, MIRRORED half. Print ONE.
 
-   Two identical cups put the solid side wall against the port face at one end.
-   The mirrored half exists so no slicer step can be forgotten.
+   This is the pair to cup.scad. The two are NOT identical: mirroring across Y
+   moves the end wall to the far end while keeping the solid side wall on the
+   same long face, which is what the second end of the dock needs. Printing two
+   of cup.scad puts the solid wall against the port face at one end.
 
    Dock is 185 x 79 x 28.7 mm (Lindy 43202 official spec). All ports run along
    one long face, out to both corners - DC 20V at one end, PD at the other - so
@@ -19,6 +20,7 @@ use <../../lib/end_cup.scad>
 
 $fn = 48;
 
+mirror([0, 1, 0])
 end_cup(
     device_w = 79.00,
     device_h = 28.70,

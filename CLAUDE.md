@@ -45,6 +45,29 @@ python3 tools/xsect.py part.stl 10 20 30    # internal geometry
 
 `bambu-studio --info` drops a `result.json` in the working directory; delete it.
 
+## Asymmetric mounts need a mirrored pair - ship BOTH STLs
+
+If a mount has a wall on only **one** long face, its two halves are **not
+identical**. Printing two of the same file puts the solid wall against the port
+face at one end, which is the exact thing the design existed to avoid. This was
+printed wrong before it was caught.
+
+```
+lib/end_cup.scad      asymmetric - wall on one face only  -> mirrored pair
+lib/end_bracket.scad  symmetric  - walls on both faces    -> identical pair
+lib/saddle.scad       symmetric  - open at both ends      -> identical pair
+lib/laptop_foot.scad  symmetric                           -> identical pair
+```
+
+**Do not rely on a slicer mirror step.** Ship both halves as separate files, as
+`models/lindy-dock/` does with `cup.scad` and `cup-mirrored.scad`. An
+instruction in a README is a failure mode; two files cannot be forgotten.
+
+Mirror across **Y** (`mirror([0,1,0])`): it moves the end wall to the far end
+while keeping the side wall on the same long face. Rotating 180 degrees instead
+swings the wall onto the port face. Verify with `tools/xsect.py` on both halves
+and check the end wall swaps ends while the side wall does not.
+
 ## Safety
 
 Printer control tools act on real hardware immediately. Check

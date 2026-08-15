@@ -211,6 +211,31 @@ Import with **Ctrl+I**. 0.2 mm layers, 4 perimeters, 25-30% infill, no support,
 as-oriented. PLA works but creeps under sustained load when warm; PETG is the
 reprint if anything ever sags.
 
+## Symmetry: which mounts need a mirrored pair
+
+A mount with a wall on only **one** long face has two halves that are **not
+identical**. Two identical prints put the solid wall against the port face at
+one end.
+
+| module | symmetry | pair |
+|---|---|---|
+| `end_cup` | wall on one face only | **mirrored**, two files |
+| `end_bracket` | walls on both faces | identical |
+| `saddle` | open at both ends | identical |
+| `laptop_foot` | symmetric | identical |
+
+Mirror across **Y** (`mirror([0,1,0])`) - it moves the end wall to the far end
+while keeping the side wall on the same long face. Rotating 180 degrees swings
+the wall onto the port face instead.
+
+Ship both halves as separate STLs rather than telling someone to mirror in the
+slicer. `models/lindy-dock` does this with `cup.scad` and `cup-mirrored.scad`.
+The instruction-in-a-README version was tried first and produced two wrong
+parts.
+
+Verify by cross-sectioning both halves at the same Z: the end wall should swap
+ends, the side wall should not move.
+
 ## Saddle library - lib/saddle.scad
 
 **Also device-independent.** Use this instead of `end_bracket` when the device

@@ -13,7 +13,7 @@ dimensions to a reusable library module.
 
 | Part | Holds | Qty | Volume |
 |---|---|---|---|
-| [`models/lindy-dock`](models/lindy-dock) | Lindy 43202 KVM dock, under a desk | 2, **mirrored** | 41.1 cm3 ea |
+| [`models/lindy-dock`](models/lindy-dock) | Lindy 43202 KVM dock, under a desk | 1 × `cup` + 1 × `cup-mirrored` | 41.1 cm3 ea |
 | [`models/spguard-charger`](models/spguard-charger) | SPGUARD GaN charger, under a desk | 2 | 15.2 cm3 ea |
 | [`models/laptop-stand`](models/laptop-stand) | MacBook Pro 16" + ThinkPad P14s, on edge | 2 | 269.5 cm3 ea |
 | [`models/skadis-ruler`](models/skadis-ruler) | 50 cm ruler, on an IKEA SKADIS pegboard | 1 | 21.8 cm3 |
@@ -80,6 +80,10 @@ Full detail in [`docs/design-notes.md`](docs/design-notes.md).
   dimension a pocket has to clear.
 - **A button or port on a contact face is structural**, not merely an access
   problem. The device will rest on it.
+- **An asymmetric mount needs a mirrored pair, shipped as two files.** A wall on
+  only one face means the two halves differ; two identical prints put the wall
+  against the ports at one end. An instruction to mirror in the slicer is a
+  failure mode, and this one was printed wrong before it was caught.
 
 ## Layout
 
