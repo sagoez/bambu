@@ -1,2 +1,3 @@
 # bambu
-3d blueprints for my home office
+
+A small collection of OpenSCAD blueprints for the Bambu A1.
