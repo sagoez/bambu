@@ -5,6 +5,20 @@
 
    Single-slot hook, so board pitch does not matter - fits any SKADIS.
 
+   PRINT WITH SUPPORT ON, "support on build plate only".
+
+   The hook cantilevers 7.7 mm off the back plate and 58 mm2 of it is
+   unsupported. This cannot be fixed by orientation: supporting it geometrically
+   needs material either where the pegboard sits or past the 5 mm slot width.
+   Unsupported it sags in the print-Z direction, which here is the hook's WIDTH
+   - the dimension that has to pass a 5 mm slot with 0.4 mm of clearance, so sag
+   can stop it fitting.
+
+   "On build plate only" is correct: below the hook is open air all the way to
+   the bed, so support grows from the plate and does not touch anything else.
+   The scarred face is the hook underside, which rests on the slot's lower edge
+   in use - cosmetic, not functional.
+
    EXPORTED ALREADY ROTATED into its print orientation, lying on its side.
    Upright, the hook's rear lip spans z 58-71 while the tongue joining it to the
    back plate only starts at z 66, so between 58 and 66 the lip is a floating
