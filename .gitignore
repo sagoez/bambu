@@ -1,0 +1,17 @@
+# Printer credentials - host, serial, LAN access code
+.envrc
+.direnv/
+
+# Third-party Gridfinity bins downloaded elsewhere. Kept locally for reference,
+# not redistributed - they carry their own licences.
+reference/
+
+# bambu-studio --info drops this in the working directory
+result.json
+
+# Slicer projects are per-machine and get stale as designs change
+*.3mf
+*.gcode
+
+__pycache__/
+*.pyc
