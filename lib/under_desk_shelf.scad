@@ -44,6 +44,7 @@ module under_desk_shelf(
     screw_head_d = 8.4,
     screw_cs     = 2.6,
     top_tab_t    = 5.0,
+    driver_d     = 10.0,
 
     win_w = 30.0,
     win_h = 8.0
@@ -82,6 +83,17 @@ module under_desk_shelf(
        slot. A proud head would foul the laptop, which has only fit_clear of
        room. top_tab_t is thickened so there is solid material left under the
        cone. */
+    /* Clearance holes through the lower tabs, directly under each screw, so a
+       driver reaches the head in a straight line from below. Without these the
+       screws are unreachable: they sit inside the upper slot with the middle
+       tab right beneath them, and no driver fits an 18 mm gap. */
+    module driver_access() {
+        for (sx = [-1, 1])
+            translate([bracket_w / 2 + sx * (bracket_w / 2 - 16),
+                       spine_t + screw_ins, -1])
+                cylinder(d = driver_d, h = total_h, $fn = 32);
+    }
+
     module screws() {
         for (sx = [-1, 1])
             translate([bracket_w / 2 + sx * (bracket_w / 2 - 16),
@@ -102,6 +114,7 @@ module under_desk_shelf(
             tab(z_bot_tab);
         }
         spine_windows();
+        driver_access();
         screws();
     }
 }
