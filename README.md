@@ -67,6 +67,20 @@ python3 tools/overhangs.py part.stl # unsupported downward faces
 python3 tools/xsect.py part.stl 10 20 30   # internal geometry at Z heights
 ```
 
+A fourth check for anything that holds an object - **model the object and
+intersect it**:
+
+```bash
+openscad -D 'PART="mac"' -o /tmp/c.stl models/laptop-underdesk/fitcheck.scad
+bambu-studio --info /tmp/c.stl        # volume > 0 means collision
+```
+
+Dimension-checking is not fit-checking. Every gap on the under-desk shelf
+measured correct while a locating stop sat squarely in the wider laptop's path.
+**Always run a deliberately-colliding control first** - the first three versions
+of that harness reported "clear" for a 25 mm laptop in an 18.4 mm slot, because
+an empty export and a silently no-opped edit both look like success.
+
 `--info` catches silent bounding-box growth after a geometry change.
 `overhangs.py` distinguishes a genuine flange cantilever from a window ceiling,
 which is a bridge and fine. `xsect.py` is the only way to measure an internal
