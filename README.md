@@ -16,6 +16,7 @@ dimensions to a reusable library module.
 | [`models/lindy-dock`](models/lindy-dock) | Lindy 43202 KVM dock, under a desk | 1 × `cup` + 1 × `cup-mirrored` | 41.1 cm3 ea |
 | [`models/spguard-charger`](models/spguard-charger) | SPGUARD GaN charger, under a desk | 2 | 15.2 cm3 ea |
 | [`models/laptop-stand`](models/laptop-stand) | MacBook Pro 16" + ThinkPad P14s, on edge | 2 | 269.5 cm3 ea |
+| [`models/laptop-underdesk`](models/laptop-underdesk) | MacBook Pro 16" + ThinkPad P14s, flat under a desk | 2-3 | 35.5 cm3 ea |
 | [`models/skadis-ruler`](models/skadis-ruler) | 50 cm ruler, on an IKEA SKADIS pegboard | 1 | 21.8 cm3 |
 
 > `skadis-ruler` is the one part that needs **support**: type normal(auto),
@@ -34,7 +35,8 @@ are**, not by its size:
 | Ports on three faces | [`lib/saddle.scad`](lib/saddle.scad) | Straps across the middle, ends fully open |
 | Ports along one whole long face | [`lib/end_cup.scad`](lib/end_cup.scad) | Wall on the clear face only |
 
-Plus [`lib/laptop_foot.scad`](lib/laptop_foot.scad) (twin-slot leaning foot) and
+Plus [`lib/laptop_foot.scad`](lib/laptop_foot.scad) (twin-slot leaning foot),
+[`lib/under_desk_shelf.scad`](lib/under_desk_shelf.scad) (double shelf, laptops flat under a desk) and
 [`lib/skadis_holder.scad`](lib/skadis_holder.scad) (single-slot pegboard pocket).
 
 ## Building
