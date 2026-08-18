@@ -39,20 +39,23 @@ module under_desk_shelf(
     spine_t   = 4.0,
     lip_t     = 3.0,
 
-    screw_d   = 4.2,
-    screw_ins = 9.0,
+    screw_d      = 4.2,
+    screw_ins    = 9.0,
+    screw_head_d = 8.4,
+    screw_cs     = 2.6,
+    top_tab_t    = 5.0,
 
     win_w = 30.0,
     win_h = 8.0
 ) {
     upper_gap = upper_t + fit_clear;
     lower_gap = lower_t + fit_clear;
-    total_h   = 3 * lip_t + upper_gap + lower_gap;
+    total_h   = top_tab_t + 2 * lip_t + upper_gap + lower_gap;
 
     eps = 0.01;
 
     /* z measured from the bottom of the part. The desk face is at total_h. */
-    z_top_tab = total_h - lip_t;
+    z_top_tab = total_h - top_tab_t;
     z_mid_tab = z_top_tab - upper_gap - lip_t;
     z_bot_tab = 0;
 
@@ -60,9 +63,9 @@ module under_desk_shelf(
         cube([bracket_w, spine_t, total_h]);
     }
 
-    module tab(z) {
+    module tab(z, t = undef) {
         translate([0, spine_t - eps, z])
-            cube([bracket_w, lip_reach + eps, lip_t]);
+            cube([bracket_w, lip_reach + eps, t == undef ? lip_t : t]);
     }
 
     /* Lightening cutouts in the spine. Kept clear of the tab roots so every
@@ -74,17 +77,27 @@ module under_desk_shelf(
                 cube([win_w, spine_t + 2, win_h], center = true);
     }
 
+    /* Countersunk, opening DOWNWARD. The screws go up into the desk, so the
+       head sits on the underside of the top tab - inside the upper laptop's
+       slot. A proud head would foul the laptop, which has only fit_clear of
+       room. top_tab_t is thickened so there is solid material left under the
+       cone. */
     module screws() {
         for (sx = [-1, 1])
             translate([bracket_w / 2 + sx * (bracket_w / 2 - 16),
-                       spine_t + screw_ins, total_h - lip_t / 2])
-                cylinder(d = screw_d, h = lip_t + 2, center = true, $fn = 32);
+                       spine_t + screw_ins, 0]) {
+                translate([0, 0, z_top_tab - 1])
+                    cylinder(d = screw_d, h = top_tab_t + 2, $fn = 32);
+                translate([0, 0, z_top_tab - eps])
+                    cylinder(d1 = screw_head_d, d2 = screw_d,
+                             h = screw_cs, $fn = 32);
+            }
     }
 
     difference() {
         union() {
             spine();
-            tab(z_top_tab);
+            tab(z_top_tab, top_tab_t);
             tab(z_mid_tab);
             tab(z_bot_tab);
         }
