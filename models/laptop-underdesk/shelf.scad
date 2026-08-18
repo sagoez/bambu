@@ -29,6 +29,12 @@ under_desk_shelf(
     upper_t = 16.80,
     lower_t = 26.64,
 
+    /* Widths drive the stepped lower lip. Brackets space to the 16 inch, so the
+       14 inch sits (355.7-315.9)/2 = 19.9 mm inboard on each side; the lower
+       lip reaches that much further in and stops it there. */
+    upper_w = 355.70,
+    lower_w = 315.90,
+
     /* Wider than the 70 mm default: more contact along the laptop's edge, and
        it pushes the two screws from 38 mm apart to 63 mm, which resists the
        bracket twisting on its own fixings. */
