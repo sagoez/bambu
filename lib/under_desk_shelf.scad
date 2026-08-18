@@ -32,7 +32,8 @@ module under_desk_shelf(
     upper_t,
     lower_t,
 
-    fit_clear = 1.4,
+    fit_clear  = 1.6,
+    stop_slack = 2.0,
 
     upper_w = undef,
     lower_w = undef,
@@ -58,8 +59,17 @@ module under_desk_shelf(
        by half the width difference on each side. Rather than packing the slot
        out, the lower lip simply reaches that much further in and carries a stop
        where the narrower laptop's edge lands. Each floor is sized to its own
-       machine. */
-    pack = (upper_w == undef || lower_w == undef) ? 0 : (upper_w - lower_w) / 2;
+       machine.
+
+       stop_slack pulls the stops outward from the exact figure. The failures
+       are not symmetric: a slot or gap too SMALL means the laptop does not go
+       in at all, while too LARGE means it sits a little loose and a strip of
+       foam tape fixes it. Margin therefore goes on the generous side of every
+       dimension, and the published widths these are derived from have already
+       been wrong once. */
+    pack = (upper_w == undef || lower_w == undef)
+             ? 0
+             : (upper_w - lower_w) / 2 - stop_slack;
 
     upper_gap = upper_t + fit_clear;
     lower_gap = lower_t + fit_clear;
@@ -142,10 +152,11 @@ module under_desk_shelf(
             tab(z_top_tab, top_tab_t);
             tab(z_mid_tab, lip_t, pack + lip_reach);
             tab(z_bot_tab, lip_t, pack + lip_reach);
-            if (pack > 0) {
-                stop(z_mid_tab + lip_t);
-                stop(z_bot_tab + lip_t);
-            }
+            /* ONE stop, on the bottom tab only. The middle tab's TOP face is
+               the floor of the upper slot, so a stop there sits directly in
+               the wider laptop's path and blocks it. The narrower laptop rests
+               on the bottom tab; the middle tab is merely its ceiling. */
+            if (pack > 0) stop(z_bot_tab + lip_t);
         }
         spine_windows();
         driver_access();
