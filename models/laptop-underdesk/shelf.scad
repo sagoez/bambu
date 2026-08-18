@@ -27,5 +27,15 @@ $fn = 48;
 rotate([90, 0, 0])
 under_desk_shelf(
     upper_t = 16.80,
-    lower_t = 26.64
+    lower_t = 26.64,
+
+    /* Wider than the 70 mm default: more contact along the laptop's edge, and
+       it pushes the two screws from 38 mm apart to 63 mm, which resists the
+       bracket twisting on its own fixings. */
+    bracket_w = 95.0,
+
+    /* Tighter than the 1.4 mm default so the laptops sit rather than rattle.
+       0.4 mm per side is snug but still slides. Do not go below this - a laptop
+       is not a precision part and the slot has to clear stickers and feet. */
+    fit_clear = 1.0
 );
