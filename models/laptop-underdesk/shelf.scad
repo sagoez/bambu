@@ -45,5 +45,11 @@ under_desk_shelf(
        it. Both figures these derive from came off spec sheets, and Lenovo's
        thickness was 10 mm out. */
     fit_clear  = 1.6,
-    stop_slack = 2.0
+    stop_slack = 2.0,
+
+    /* The middle tab is the most loaded part in the bracket: it carries the
+       MacBook on a 48 mm cantilever and separates the two machines. Doubled
+       from the 3 mm the other lips use. Costs 3 mm of drop, and there is
+       height to spare. */
+    mid_tab_t = 6.0
 );

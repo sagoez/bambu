@@ -44,6 +44,7 @@ module under_desk_shelf(
     stop_t    = 3.0,
     spine_t   = 4.0,
     lip_t     = 3.0,
+    mid_tab_t = undef,
 
     screw_d      = 4.2,
     screw_ins    = 9.0,
@@ -71,15 +72,17 @@ module under_desk_shelf(
              ? 0
              : (upper_w - lower_w) / 2 - stop_slack;
 
+    mt = mid_tab_t == undef ? lip_t : mid_tab_t;
+
     upper_gap = upper_t + fit_clear;
     lower_gap = lower_t + fit_clear;
-    total_h   = top_tab_t + 2 * lip_t + upper_gap + lower_gap;
+    total_h   = top_tab_t + mt + lip_t + upper_gap + lower_gap;
 
     eps = 0.01;
 
     /* z measured from the bottom of the part. The desk face is at total_h. */
     z_top_tab = total_h - top_tab_t;
-    z_mid_tab = z_top_tab - upper_gap - lip_t;
+    z_mid_tab = z_top_tab - upper_gap - mt;
     z_bot_tab = 0;
 
     module spine() {
@@ -150,7 +153,7 @@ module under_desk_shelf(
         union() {
             spine();
             tab(z_top_tab, top_tab_t);
-            tab(z_mid_tab, lip_t, pack + lip_reach);
+            tab(z_mid_tab, mt, pack + lip_reach);
             tab(z_bot_tab, lip_t, pack + lip_reach);
             /* ONE stop, on the bottom tab only. The middle tab's TOP face is
                the floor of the upper slot, so a stop there sits directly in
