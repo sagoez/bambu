@@ -11,13 +11,16 @@ dimensions to a reusable library module.
 
 ## Parts
 
-| Part | Holds | Qty | Volume |
-|---|---|---|---|
-| [`models/lindy-dock`](models/lindy-dock) | Lindy 43202 KVM dock, under a desk | 1 × `cup` + 1 × `cup-mirrored` | 41.1 cm3 ea |
-| [`models/spguard-charger`](models/spguard-charger) | SPGUARD GaN charger, under a desk | 2 | 15.2 cm3 ea |
-| [`models/laptop-stand`](models/laptop-stand) | MacBook Pro 16" + ThinkPad P14s, on edge | 2 | 269.5 cm3 ea |
-| [`models/laptop-underdesk`](models/laptop-underdesk) | MacBook Pro 16" + ThinkPad P14s, flat under a desk | 2-3 | 35.5 cm3 ea |
-| [`models/skadis-ruler`](models/skadis-ruler) | 50 cm ruler, on an IKEA SKADIS pegboard | 1 | 21.8 cm3 |
+| Part | Holds | Qty | Size (mm) | Volume |
+|---|---|---|---|---|
+| [`models/laptop-underdesk`](models/laptop-underdesk) | MacBook Pro 16" + ThinkPad P14s, flat under a desk | 2-3 | 95.0 x 63.6 x 53.9 | 102.7 cm3 |
+| [`models/lindy-dock`](models/lindy-dock) | Lindy 43202 KVM dock, under a desk | 1 x `cup` + 1 x `cup-mirrored` | 113.4 x 52.0 x 32.1 | 41.1 cm3 |
+| [`models/spguard-charger`](models/spguard-charger) | SPGUARD GaN charger, under a desk | 2 | 124.4 x 25.0 x 44.4 | 15.2 cm3 |
+| [`models/skadis-ruler`](models/skadis-ruler) | 50 cm ruler, on an IKEA SKADIS pegboard | 1 | 82.0 x 18.7 x 46.9 | 21.8 cm3 |
+| [`models/laptop-stand`](models/laptop-stand) | Same two laptops, on edge **on** the desk | 2 | 78.0 x 127.1 x 52.6 | 278.7 cm3 |
+
+`laptop-stand` is the on-desk predecessor of `laptop-underdesk`. Kept because it
+needs no drilling, but it costs 2.7x the plastic and the whole desk footprint.
 
 > `skadis-ruler` is the one part that needs **support**: type normal(auto),
 > style Snug, and tick **On build plate only**.
@@ -101,6 +104,14 @@ Full detail in [`docs/design-notes.md`](docs/design-notes.md).
   dimension a pocket has to clear.
 - **A button or port on a contact face is structural**, not merely an access
   problem. The device will rest on it.
+- **Stress margin says nothing about deflection.** Every part here sits at
+  10-30x safety on stress and one still visibly bent. Sizing is governed by
+  stiffness, and stiffness goes as thickness **cubed** - 3 to 6 mm is 8x, not
+  2x. Check the whole load path: on the under-desk shelf the 4 mm spine
+  contributed more droop than the 3 mm lip that was actually seen bending.
+- **Use printed stiffness, not datasheet stiffness.** Solid PLA is ~3000 MPa; a
+  sparsely filled print in eSun PLA+ is nearer 1800, so a deflection figure off
+  a datasheet is roughly a third optimistic.
 - **An asymmetric mount needs a mirrored pair, shipped as two files.** A wall on
   only one face means the two halves differ; two identical prints put the wall
   against the ports at one end. An instruction to mirror in the slicer is a
