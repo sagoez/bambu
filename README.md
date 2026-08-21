@@ -124,16 +124,15 @@ lib/        reusable parametric modules
 models/     per-device files and their STLs
 tools/      mesh inspection
 docs/       design notes and printer setup
-reference/  third-party Gridfinity bins, not redistributed (gitignored)
+reference/  downloaded third-party models, not redistributed (gitignored)
 ```
 
 ## Licence
 
-Everything in `lib/`, `tools/` and the parts listed above is original work.
+Everything in this repo is original work.
 
-Some folders under `models/` hold **third-party STLs** downloaded elsewhere and
-kept for convenience - they have no `.scad` source. They are credited in
-[`SOURCES.md`](SOURCES.md) and carry their own licences.
-
-`reference/` holds downloaded Gridfinity bins and is excluded from the repo
-via `.gitignore`.
+Third-party models downloaded from MakerWorld and elsewhere live in
+`reference/`, which is excluded via `.gitignore`. They are kept locally for
+convenience and are not redistributed here - their licences are set per model
+by their authors, and committing them would be redistribution rather than
+personal use.
