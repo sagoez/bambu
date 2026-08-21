@@ -51,5 +51,11 @@ under_desk_shelf(
        MacBook on a 48 mm cantilever and separates the two machines. Doubled
        from the 3 mm the other lips use. Costs 3 mm of drop, and there is
        height to spare. */
-    mid_tab_t = 6.0
+    mid_tab_t = 6.0,
+
+    /* The 3 mm bottom lip visibly bent in the first print. Stiffness goes as
+       thickness cubed, so 3 -> 6 mm is 8x stiffer, not 2x. Costs 3 mm of drop.
+       My earlier deflection figures were optimistic: they assumed solid PLA at
+       E = 3000 MPa, and a sparsely filled print is nearer 1800. */
+    bot_tab_t = 6.0
 );

@@ -32,10 +32,11 @@ fit_clear = 1.6;   stop_slack = 2.0;
 bracket_w = 95.0;  lip_reach = 30.0;
 spine_t = 4.0;     lip_t = 3.0;  top_tab_t = 5.0;  stop_h = 8.0;
 mid_tab_t = 6.0;   // MUST track models/laptop-underdesk/shelf.scad
+bot_tab_t = 6.0;   // MUST track models/laptop-underdesk/shelf.scad
 
 upper_gap = upper_t + fit_clear;
 lower_gap = lower_t + fit_clear;
-total_h   = top_tab_t + mid_tab_t + lip_t + upper_gap + lower_gap;
+total_h   = top_tab_t + mid_tab_t + bot_tab_t + upper_gap + lower_gap;
 z_top_tab = total_h - top_tab_t;
 z_mid_tab = z_top_tab - upper_gap - mid_tab_t;
 pack      = (upper_w - lower_w) / 2 - stop_slack;
@@ -49,12 +50,14 @@ module pair() {
     under_desk_shelf(upper_t = upper_t, lower_t = lower_t,
                      upper_w = upper_w, lower_w = lower_w,
                      bracket_w = bracket_w, fit_clear = fit_clear,
-                     stop_slack = stop_slack, mid_tab_t = mid_tab_t);
+                     stop_slack = stop_slack, mid_tab_t = mid_tab_t,
+                     bot_tab_t = bot_tab_t);
     translate([0, y_far + spine_t, 0]) mirror([0, 1, 0])
         under_desk_shelf(upper_t = upper_t, lower_t = lower_t,
                          upper_w = upper_w, lower_w = lower_w,
                          bracket_w = bracket_w, fit_clear = fit_clear,
-                         stop_slack = stop_slack, mid_tab_t = mid_tab_t);
+                         stop_slack = stop_slack, mid_tab_t = mid_tab_t,
+                     bot_tab_t = bot_tab_t);
 }
 
 /* Laptops run well past the brackets along x, which is the slide direction. */
@@ -65,7 +68,7 @@ module mac() {
 
 /* Pushed hard against one stop - the worst case for the far side. */
 module think() {
-    translate([-150, y_in + pack, lip_t])
+    translate([-150, y_in + pack, bot_tab_t])
         cube([400, lower_w, THINK_T > 0 ? THINK_T : lower_t]);
 }
 

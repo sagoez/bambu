@@ -45,6 +45,7 @@ module under_desk_shelf(
     spine_t   = 4.0,
     lip_t     = 3.0,
     mid_tab_t = undef,
+    bot_tab_t = undef,
 
     screw_d      = 4.2,
     screw_ins    = 9.0,
@@ -73,10 +74,11 @@ module under_desk_shelf(
              : (upper_w - lower_w) / 2 - stop_slack;
 
     mt = mid_tab_t == undef ? lip_t : mid_tab_t;
+    bt = bot_tab_t == undef ? lip_t : bot_tab_t;
 
     upper_gap = upper_t + fit_clear;
     lower_gap = lower_t + fit_clear;
-    total_h   = top_tab_t + mt + lip_t + upper_gap + lower_gap;
+    total_h   = top_tab_t + mt + bt + upper_gap + lower_gap;
 
     eps = 0.01;
 
@@ -115,7 +117,7 @@ module under_desk_shelf(
     /* Lightening cutouts in the spine. Kept clear of the tab roots so every
        tab still meets full-thickness spine. */
     module spine_windows() {
-        for (z = [z_bot_tab + lip_t + lower_gap / 2,
+        for (z = [z_bot_tab + bt + lower_gap / 2,
                   z_mid_tab + lip_t + upper_gap / 2])
             translate([bracket_w / 2, spine_t / 2, z])
                 cube([win_w, spine_t + 2, win_h], center = true);
@@ -154,12 +156,12 @@ module under_desk_shelf(
             spine();
             tab(z_top_tab, top_tab_t);
             tab(z_mid_tab, mt, pack + lip_reach);
-            tab(z_bot_tab, lip_t, pack + lip_reach);
+            tab(z_bot_tab, bt, pack + lip_reach);
             /* ONE stop, on the bottom tab only. The middle tab's TOP face is
                the floor of the upper slot, so a stop there sits directly in
                the wider laptop's path and blocks it. The narrower laptop rests
                on the bottom tab; the middle tab is merely its ceiling. */
-            if (pack > 0) stop(z_bot_tab + lip_t);
+            if (pack > 0) stop(z_bot_tab + bt);
         }
         spine_windows();
         driver_access();
