@@ -129,6 +129,11 @@ reference/  third-party Gridfinity bins, not redistributed (gitignored)
 
 ## Licence
 
-Parts and tools here are original work. `reference/` holds third-party models
-downloaded elsewhere; they are excluded from the repo and carry their own
-licences.
+Everything in `lib/`, `tools/` and the parts listed above is original work.
+
+Some folders under `models/` hold **third-party STLs** downloaded elsewhere and
+kept for convenience - they have no `.scad` source. They are credited in
+[`SOURCES.md`](SOURCES.md) and carry their own licences.
+
+`reference/` holds downloaded Gridfinity bins and is excluded from the repo
+via `.gitignore`.
