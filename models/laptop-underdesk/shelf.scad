@@ -57,5 +57,11 @@ under_desk_shelf(
        thickness cubed, so 3 -> 6 mm is 8x stiffer, not 2x. Costs 3 mm of drop.
        My earlier deflection figures were optimistic: they assumed solid PLA at
        E = 3000 MPa, and a sparsely filled print is nearer 1800. */
-    bot_tab_t = 6.0
+    bot_tab_t = 6.0,
+
+    /* The spine is the whole load path and was the thinnest thing in it. At
+       4 mm its own flex contributed ~1.4 mm of droop at the lip tip - more
+       than the bottom tab that was visibly bending. 6 mm cuts that to 0.4 mm
+       and costs depth, not hanging height. */
+    spine_t = 6.0
 );
